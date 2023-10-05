@@ -1,0 +1,23 @@
+this is the flow of my browser project
+🫠🫠🫠🫠🫠🫠🫠🫠
+1.I made a socket to connect to a server
+   in the url.py in class URL:
+
+2.EXtract the scheme -> http and the host using sneaky .split()
+    so cool
+
+3.I'm tired
+ Finished writing the browser logic for getting websites -- hope it works perfectly
+
+ STAGE 2
+ a) Learnt modules and packages
+ b) Use single class in a single file
+
+
+ >>> Trying to get the web content to be displayed on a canvas
+ IT WORKED🎉🎉🎉🎉🎉
+
+
+
+ ---The trick is understanding the problem you are trying to solve -----
+                     🧐🧐🧐🧐

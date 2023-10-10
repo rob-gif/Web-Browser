@@ -1,39 +1,33 @@
 # Here is where i add the window functionality to my cool web browser
 # here goes nothing
+#all i want to do is the GUI -- here
 
 import tkinter
 
-#from .url import URL
+from .url import URL
+from .layout import Layout
 
 
 class Browser:
     def __init__(self):
-        self.display_list = []
-        self.HSTEP, self.VSTEP = 13, 18
-        self.cursor_x, self.cursor_y = self.HSTEP, self.VSTEP
-        WIDTH, HEIGHT = 800, 600
+        self.WIDTH, self.HEIGHT = 800, 600
         self.window = tkinter.Tk()  # initialize a window
         self.canvas = tkinter.Canvas(
             self.window,
-            width=WIDTH,
-            height=HEIGHT
+            width=self.WIDTH,
+            height=self.HEIGHT
         )
         self.scroll = 0
         self.window.bind("<Down>", self.scrolldown)
         self.SCROLL_STEP = 100
+        self.display_list = []
 
-    def layout(self,text):
-        # logic for calculating where to display ;0
-        for c in text:
-            self.display_list.append((self.cursor_x,self.cursor_y,c))
-            self.cursor_x += self.HSTEP
-        return self.display_list
 
     def start(self):
         #draw the text on the window
         for x, y, c in self.display_list:
-              self.canvas.create_text(x, y - self.scroll, text=c)
-              self.canvas.create_text(400, 300, text="it works")
+              self.canvas.create_text(x, y - self.scroll, text=c, font=self.fonts)
+              self.canvas.create_text(400, 300, text="it works", font=self.fonts)
               self.canvas.pack()
               self.window.mainloop()
 

@@ -1,18 +1,13 @@
-#this is where cool shit happens
+# this is where cool shit happens
 
 from classes import Browser
 from classes import URL
+from classes import Layout
 
 print("It works")
 
 if __name__ == "__main__":
-    #import sys
-    url = URL("http://example.org/index.html")
-
-    #so cool that my logic worked
+    import sys
+    url = URL("https://browser.engineering/index.html")
     text = url.clean_tags()
-
-
-    browser = Browser()
-    browser.layout(text)
-    browser.start()
+    Browser.start()

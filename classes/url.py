@@ -4,9 +4,6 @@ import socket
 import ssl
 
 
-# from .browser import Browser
-
-
 # making my class
 # downloading my web page
 # code to connect to host
@@ -15,7 +12,6 @@ class URL:
     # it as argument when i call a method
     def __init__(self, url):
         self.url = url
-        # self.browser = Browser()
         self.scheme, url = url.split("://", 1)
         assert self.scheme in ["http", "https"], \
             "Unknown Scheme {}".format(self.scheme)
@@ -83,18 +79,20 @@ class URL:
         return headers, body
 
     # This is just filtering the html tags and just displaying the text only
-    def clean_tags(self):
+    def parse(self):
         # display web-page to canvas
         headers, body = self.request()
 
         # fix this logic
         text = ""
-        in_angle = False
+        in_tag = False
         for c in body:
             if c == "<":
-                in_angle = True
+                in_tag = True
+                if text: self.add_text(text)
+                text = ""
             elif c == ">":
-                in_angle = False
+                in_ta = False
             elif not in_angle:
                 text += c
         print(text)
@@ -103,9 +101,3 @@ class URL:
     # load method calls the show method
     def load(self):
         self.clean_tags()
-
-""""
-if __name__ == "__main__":
-    url = URL("http://example.org/index.html")
-    url.load()
-"""

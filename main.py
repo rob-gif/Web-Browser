@@ -11,7 +11,8 @@ if __name__ == "__main__":
 
     header, body = url.request()
     text = url.text(body)
-    print(text)
+
+    layout = Layout(text)
+    display_list = layout.display_list()
 
     browser = Browser(body)
-    browser.layout(text)

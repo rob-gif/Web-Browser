@@ -93,13 +93,7 @@ class URL:
         if not in_tag and text:
             out.append(Text(text))
 
+        for c in out:
+            print(c)
+
         return out
-
-
-"""
-if __name__=="__main__":
-    url = URL("http://example.org/index.html")
-    header, body = url.request()
-    print(body)
-    print(url.text(body))
-"""

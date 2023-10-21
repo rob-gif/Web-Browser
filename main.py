@@ -8,7 +8,10 @@ print("browser v1.0.0")
 
 if __name__ == "__main__":
     url = URL("http://example.org/index.html")
-    body = url.request()
+
+    header, body = url.request()
+    text = url.text(body)
+    print(text)
 
     browser = Browser(body)
-    browser.draw()
+    browser.layout(text)

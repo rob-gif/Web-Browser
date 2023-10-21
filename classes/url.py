@@ -3,6 +3,7 @@
 import socket
 import ssl
 
+
 class URL:
     def __init__(self, url):
         self.url = url
@@ -12,7 +13,7 @@ class URL:
 
         if "/" not in url:
             url = url + "/"
-        self.host, url = url.split("/",1)
+        self.host, url = url.split("/", 1)
         self.path = "/" + url  # path is now something like /home/index.html
 
         # adding support for custom ports
@@ -28,7 +29,7 @@ class URL:
 
     def request(self):
         s = socket.socket(
-            family=socket.AF_INET,  #using IPv4
+            family=socket.AF_INET,  # using IPv4
             type=socket.SOCK_STREAM,  # socket type of socket ;)
             proto=socket.IPPROTO_TCP,  # specify i'm using tcp -- a cool protocol
         )
@@ -66,5 +67,31 @@ class URL:
             assert "content-encoding" not in headers
 
         body = response.read()
+        #print(body)
         s.close()
+
         return headers, body
+
+    # method to filter tags
+    def text(self, body):
+        text = []
+        in_angle = False
+        for c in body:
+            if c == "<":
+                in_angle = True
+            elif c == ">":
+                in_angle = False
+            elif not in_angle:
+                text += c
+
+        #cleaned_text = ''.join(text)
+
+        return text
+
+"""
+if __name__=="__main__":
+    url = URL("http://example.org/index.html")
+    header, body = url.request()
+    print(body)
+    print(url.text(body))
+"""

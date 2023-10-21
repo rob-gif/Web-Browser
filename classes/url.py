@@ -3,6 +3,8 @@
 import socket
 import ssl
 
+from classes.text import Text
+from classes.tag import Tag
 
 class URL:
     def __init__(self, url):
@@ -74,19 +76,25 @@ class URL:
 
     # method to filter tags
     def text(self, body):
-        text = []
-        in_angle = False
+        out = []
+        text = " "
+        in_tag = False
         for c in body:
             if c == "<":
-                in_angle = True
+                in_tag = True
+                if text: out.append(Text(text))
+                text = " "
             elif c == ">":
-                in_angle = False
-            elif not in_angle:
+                in_tag = False
+                out.append(Tag(text))
+                text = " "
+            else :
                 text += c
+        if not in_tag and text:
+            out.append(Text(text))
 
-        #cleaned_text = ''.join(text)
+        return out
 
-        return text
 
 """
 if __name__=="__main__":

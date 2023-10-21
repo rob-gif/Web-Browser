@@ -1,5 +1,5 @@
 class Text:
-    def __init__(self, text, parent):
+    def __init__(self, text):
         self.text = text
         self.children = []
-        self.parent = parent
+        #self.parent = parent

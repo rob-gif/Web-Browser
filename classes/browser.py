@@ -1,6 +1,8 @@
 import tkinter
 import tkinter.font
 
+from classes import Text
+
 
 class Browser:
     def __init__(self, body):
@@ -21,26 +23,7 @@ class Browser:
         self.window.bind("<MouseWheel>", self.scrolldown)
         self.SCROLL_STEP = 100
         self.display_list = []
-        self.fonts = tkinter.font.Font(
-            family="Jetbrains mono",
-            size=16,
-            weight="bold",
-            slant="italic"
-        )
 
-    # BASIC LAYOUT
-    def layout(self, text):
-        w = self.fonts.measure(text)
-
-        for c in text:
-            if self.cursor_x > self.WIDTH - self.HSTEP:
-                self.cursor_y += self.fonts.metrics("linespace") * 1.25
-                self.cursor_x = self.HSTEP
-            self.display_list.append((self.cursor_x, self.cursor_y, c))
-            self.cursor_x += w + self.fonts.measure(" ")
-
-        self.scrolldown()
-        return self.display_list
 
     def draw(self):
         self.canvas.delete("all")

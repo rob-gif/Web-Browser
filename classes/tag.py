@@ -1,5 +1,5 @@
-class Element:
-    def __init__(self, tag, parent):
+class Tag:
+    def __init__(self, tag):
         self.tag = tag
         self.children = []
-        self.parent = parent
+      #self.parent = parent

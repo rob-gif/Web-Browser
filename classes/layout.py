@@ -1,5 +1,4 @@
 import tkinter.font
-from .tag import Tag
 
 class Layout:
     def __init__(self,text):
@@ -18,7 +17,6 @@ class Layout:
         self.style = "roman"
 
     def boldness(self, tag):
-            tag = Tag()
             if tag == "i":
                     self.style = "italic"
             elif tag == "/i":
@@ -36,7 +34,7 @@ class Layout:
             self.cursor_x = self.HSTEP
 
         for c in self.text:
-            self.display_list.append((self.cursor_x,self.cursor_y,c,font))
+            self.display_list.append((self.cursor_x,self.cursor_y,c,self.fonts))
             self.cursor_x += self.HSTEP
 
         return self.display_list

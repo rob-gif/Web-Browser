@@ -4,4 +4,5 @@ class HTMLParser:
         self.unfinished = []
 
     def parse(self):
+        pass
 

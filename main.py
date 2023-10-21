@@ -4,10 +4,11 @@ from classes import Browser
 from classes import URL
 from classes import Layout
 
-print("It works")
+print("browser v1.0.0")
 
 if __name__ == "__main__":
-    import sys
-    url = URL("https://browser.engineering/index.html")
-    text = url.clean_tags()
-    Browser.start()
+    url = URL("http://example.org/index.html")
+    body = url.request()
+
+    browser = Browser(body)
+    browser.draw()

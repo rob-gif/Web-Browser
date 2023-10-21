@@ -3,13 +3,7 @@
 import socket
 import ssl
 
-
-# making my class
-# downloading my web page
-# code to connect to host
 class URL:
-    # this is my constructor --> used to initialize objects when used in a claass so example the url i will be able to pass
-    # it as argument when i call a method
     def __init__(self, url):
         self.url = url
         self.scheme, url = url.split("://", 1)
@@ -18,11 +12,10 @@ class URL:
 
         if "/" not in url:
             url = url + "/"
-        self.host, url = url.split("/",
-                                   1)  # note that the url now becomes the rest of the url after the domain name -- clever
+        self.host, url = url.split("/",1)
         self.path = "/" + url  # path is now something like /home/index.html
 
-        # add support for custom ports
+        # adding support for custom ports
         if ":" in self.host:
             self.host, port = self.host.split(":", 1)
             self.port = int(port)
@@ -34,13 +27,11 @@ class URL:
             self.port = 443
 
     def request(self):
-        # create a socket instance named s
         s = socket.socket(
-            family=socket.AF_INET,  # means i'm using IPv4
-            type=socket.SOCK_STREAM,  # specify socket stream ;)
+            family=socket.AF_INET,  #using IPv4
+            type=socket.SOCK_STREAM,  # socket type of socket ;)
             proto=socket.IPPROTO_TCP,  # specify i'm using tcp -- a cool protocol
         )
-        # adding the target and port for connecting - pair
         s.connect((self.host, self.port))
 
         # adding https support for secure connections
@@ -58,8 +49,8 @@ class URL:
         # this will return a file-like object
         response = s.makefile("r", encoding="utf8", newline="\r\n")
 
-        statusline = response.readline()  # reads line by line
-        version, status, explanation = statusline.split(" ", 2)
+        status_line = response.readline()  # reads line by line
+        version, status, explanation = status_line.split(" ", 2)
         assert status == "200", "{}: {}".format(status, explanation)
 
         # i want  to work with the response(pretty much html more)
@@ -77,27 +68,3 @@ class URL:
         body = response.read()
         s.close()
         return headers, body
-
-    # This is just filtering the html tags and just displaying the text only
-    def parse(self):
-        # display web-page to canvas
-        headers, body = self.request()
-
-        # fix this logic
-        text = ""
-        in_tag = False
-        for c in body:
-            if c == "<":
-                in_tag = True
-                if text: self.add_text(text)
-                text = ""
-            elif c == ">":
-                in_ta = False
-            elif not in_angle:
-                text += c
-        print(text)
-        return text
-
-    # load method calls the show method
-    def load(self):
-        self.clean_tags()

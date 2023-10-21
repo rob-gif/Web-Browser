@@ -1,10 +1,11 @@
 import tkinter.font
+
 from classes.text import Text
-from classes.url import URL
 
 # caching fonts to speed up the browser
-FONTS = {}
+# i'll do quite some catching
 
+FONTS = {}
 
 class Layout:
     def __init__(self, tokens):

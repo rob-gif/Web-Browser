@@ -3,11 +3,12 @@
 import socket
 import ssl
 
-from classes.text import Text
-from classes.tag import Tag
+from classes.HTMLParser import HTMLParser
+
 
 class URL:
     def __init__(self, url):
+        self.html_parser = HTMLParser(url.request())
         self.url = url
         self.scheme, url = url.split("://", 1)
         assert self.scheme in ["http", "https"], \
@@ -75,25 +76,21 @@ class URL:
         return headers, body
 
     # method to filter tags
-    def text(self, body):
-        out = []
-        text = " "
+    def parse(self, body):
+        text = ""
         in_tag = False
         for c in body:
             if c == "<":
                 in_tag = True
-                if text: out.append(Text(text))
+                if text: self.add_text(text)
                 text = " "
             elif c == ">":
                 in_tag = False
-                out.append(Tag(text))
-                text = " "
+                self.add_tag(text)
+                text = ""
             else :
                 text += c
         if not in_tag and text:
-            out.append(Text(text))
+            self.add_text(text)
 
-        for c in out:
-            print(c)
-
-        return out
+        return self.finish()

@@ -1,7 +1,7 @@
-# this is where carlos request html from a remote server using pythons socket module
+# request html from a remote server using pythons socket module
 
 import socket
-import ssl
+import ssl #for https
 
 from classes.HTMLParser import HTMLParser
 

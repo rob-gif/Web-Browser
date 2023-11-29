@@ -2,6 +2,7 @@
 
 import socket
 import ssl #for https
+import sys
 
 from classes.HTMLParser import HTMLParser
 
@@ -94,3 +95,8 @@ class URL:
             self.add_text(text)
 
         return self.finish()
+
+"""
+if __name__=="__main__":
+    URL(sys.argv(http://example.org/index.html))
+"""    

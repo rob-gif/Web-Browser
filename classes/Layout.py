@@ -3,7 +3,7 @@ import tkinter.font
 from classes.text import Text
 
 # caching fonts to speed up the browser
-# i'll do quite some catching
+# i'll do quite some caching
 
 FONTS = {}
 
